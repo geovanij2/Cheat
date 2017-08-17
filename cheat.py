@@ -35,7 +35,7 @@ class Card(object):
 		self.suit = suit
 
 	def __str__(self):
-		return "[" + i.rank + "," + i.suit + "]"	
+		return "[%s, %s]" % (self.rank, self.suit)	
 
 class Deck(object):
 
@@ -51,12 +51,13 @@ class Deck(object):
 				rank = Card.RANKS[r]
 				self.cards.append(Card(rank, suit))
 
-	#def __str__(self):
-		#return '[{}, {}]'.format(self)
+	def shuffle(self):
+		random.shuffle(self.cards)
 
 
 
 d = Deck()
 d.generate()
+d.shuffle()
 for i in d.cards:
 	print(i)

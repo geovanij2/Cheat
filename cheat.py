@@ -58,12 +58,28 @@ class Card(object):
 
 
 class Deck(list):
+	'''
+	Deck class.
+
+	Simple deck. It is basically a list of cards of size 52.
+	'''
 
 	def __init__(self):
+		'''
+		Constructor will fill the deck with 52 cards.
+		'''
+
 		super(Deck, self).__init__()
 		self._generate()
 
+
 	def _generate(self):
+		'''
+		Generate method.
+
+		Will fill the deck with cards. In order.
+		'''
+
 		self.clear()
 		for s in Card.SUITS:
 			suit = Card.SUITS[s]
@@ -71,7 +87,14 @@ class Deck(list):
 				rank = Card.RANKS[r]
 				self.append(Card(rank, suit))
 
+
 	def shuffle(self):
+		'''
+		Shuffle method.
+
+		Just calls random.shuffle on itself.
+		'''
+
 		random.shuffle(self)
 		return self
 
@@ -83,22 +106,46 @@ class Player(list):
 		super(Player, self).__init__()
 
 
-
 class Game(object):
+	'''
+	Game class.
+
+	It takes care of the game's rules. It can be seeen as the model part of MVC.
+	'''
 
 	START_CARDS_LEN = 13
 	START_PLAYERS_LEN = 4
 
 	def __init__(self):
-		super(Game, self).__init__()
-		self.deck = Deck().shuffle()
+		'''
+		Constructor.
 
+		Starts the game with 4 players and each player will receive 13 cards. It
+		will also instantiate an Deck object and shuffle it.
+		'''
+
+		super(Game, self).__init__()
+
+		self.deck = Deck().shuffle()
 		self.players = [ Player() for i in range(self.START_PLAYERS_LEN) ]
 
-		for i in range(len(self.players)):
+		for i, p in enumerate(self.players):
 			c = [ self.deck.pop() for j in range(self.START_CARDS_LEN) ]
 			self.players[i].extend(c)
 
+
+	def __str__(self):
+		'''
+		String method.
+
+		Will return the list of players and their hands.
+		'''
+
+		s = ''
+		for p in players:
+			s += str(p)
+			s += '\n'
+		return s
 
 
 	def play(self):

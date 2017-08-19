@@ -149,21 +149,24 @@ class Game(object):
 
 
 	def play(self):
+		'''
+		Play method.
+
+		Will define all the interactions in the game.
+		Rules:
+		Each turn a player is prompt to select up to four cards to throw the pile.
+		Then he has to select the rank of the cards he played. It's ok to cheat.
+		After that, all the other players are asked if they wanna call a cheating 
+		or not. If someone chooses this option the player that played the cards is 
+		checked. If he was cheating, he gets all cards in the pile. If he wasnt the
+		player that called it cheating gets the cards in pile instead.
+		The first player can select any rank he wants in the first round, the next
+		player has to select the same rank the first player chose or one up/down
+		(Example: player 1 said he played a 6, the next player has to play a 5,6 or 7)
+		unless someone calls a cheat. If that happens the next person that plays can 
+		select any rank.
+		To win the round a player must empty his hand.
+		'''
 
 		for p in circ(players):
-			# p joga
-			# outros player acusam, ou n, p
-			# check(mao vazia)
-			# primo p
-
-
-
-
-
-
-
-
-
-
-
-
+			
